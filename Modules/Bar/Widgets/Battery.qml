@@ -44,6 +44,8 @@ Item {
   readonly property bool hideIfNotDetected: widgetSettings.hideIfNotDetected !== undefined ? widgetSettings.hideIfNotDetected : widgetMetadata.hideIfNotDetected
   readonly property bool hideIfIdle: widgetSettings.hideIfIdle !== undefined ? widgetSettings.hideIfIdle : widgetMetadata.hideIfIdle
 
+  readonly property int digitCount: widgetSettings.digitCount !== undefined ? widgetSettings.digitCount : widgetMetadata.digitCount
+
   // Check if selected device is actually present/connected
   readonly property bool isReady: BatteryService.isDeviceReady(selectedDevice)
   readonly property bool isPresent: BatteryService.isDevicePresent(selectedDevice)

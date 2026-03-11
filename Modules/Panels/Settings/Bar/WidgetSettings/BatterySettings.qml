@@ -23,7 +23,7 @@ ColumnLayout {
   property bool valueShowNoctaliaPerformance: widgetData.showNoctaliaPerformance !== undefined ? widgetData.showNoctaliaPerformance : widgetMetadata.showNoctaliaPerformance
   property bool valueHideIfNotDetected: widgetData.hideIfNotDetected !== undefined ? widgetData.hideIfNotDetected : widgetMetadata.hideIfNotDetected
   property bool valueHideIfIdle: widgetData.hideIfIdle !== undefined ? widgetData.hideIfIdle : widgetMetadata.hideIfIdle
-  property int valueDigitCount: widgetData.digitCount !== undefined ? parseInt(widgetData.digitCount) : parseInt(widgetMetadata.digitCount)
+  property int valueDigitCount: widgetData.digitCount !== undefined ? widgetData.digitCount : widgetMetadata.digitCount
 
   function saveSettings() {
     var settings = Object.assign({}, widgetData || {});
@@ -147,9 +147,10 @@ ColumnLayout {
     from: 2
     to: 5
     value: valueDigitCount
-    onValueChanged: value => {
-                      valueDigitCount = value;
-                      saveSettings();
-                    }
+    onValueChanged: {
+      valueDigitCount = value;
+      saveSettings();
+    }
+    defaultValue: widgetMetadata && widgetMetadata.digitCount !== undefined ? widgetMetadata.digitCount : 3
   }
 }
