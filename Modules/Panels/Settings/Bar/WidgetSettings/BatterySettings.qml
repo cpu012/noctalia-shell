@@ -23,6 +23,7 @@ ColumnLayout {
   property bool valueShowNoctaliaPerformance: widgetData.showNoctaliaPerformance !== undefined ? widgetData.showNoctaliaPerformance : widgetMetadata.showNoctaliaPerformance
   property bool valueHideIfNotDetected: widgetData.hideIfNotDetected !== undefined ? widgetData.hideIfNotDetected : widgetMetadata.hideIfNotDetected
   property bool valueHideIfIdle: widgetData.hideIfIdle !== undefined ? widgetData.hideIfIdle : widgetMetadata.hideIfIdle
+  property int valueDigitCount: widgetData.digitCount !== undefined ? parseInt(widgetData.digitCount) : parseInt(widgetMetadata.digitCount)
 
   function saveSettings() {
     var settings = Object.assign({}, widgetData || {});
@@ -35,6 +36,7 @@ ColumnLayout {
     settings.hideIfNotDetected = valueHideIfNotDetected;
     settings.hideIfIdle = valueHideIfIdle;
     settings.deviceNativePath = valueDeviceNativePath;
+    settings.digitCount = valueDigitCount;
     settingsChanged(settings);
   }
 
@@ -134,5 +136,20 @@ ColumnLayout {
                  saveSettings();
                }
     defaultValue: widgetMetadata.showNoctaliaPerformance
+  }
+
+  NLabel {
+    label: "Digits"
+    description: "Number of digits to show in the percent text"
+  }
+
+  NSpinBox {
+    from: 2
+    to: 5
+    value: valueDigitCount
+    onValueChanged: value => {
+                      valueDigitCount = value;
+                      saveSettings();
+                    }
   }
 }

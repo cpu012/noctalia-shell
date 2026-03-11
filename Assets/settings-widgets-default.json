@@ -21,6 +21,7 @@
       "showNoctaliaPerformance": false,
       "hideIfNotDetected": true,
       "hideIfIdle": false
+      "valueDigitCount": 2
     },
     "Bluetooth": {
       "displayMode": "onhover",

@@ -98,7 +98,8 @@ Singleton {
                                     "showPowerProfiles": false,
                                     "showNoctaliaPerformance": false,
                                     "hideIfNotDetected": true,
-                                    "hideIfIdle": false
+                                    "hideIfIdle": false,
+                                    "digitCount": 2
                                   },
                                   "Bluetooth": {
                                     "displayMode": "onhover",

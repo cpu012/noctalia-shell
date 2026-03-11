@@ -20,6 +20,7 @@ Singleton {
   readonly property bool batteryPresent: isDevicePresent(primaryDevice)
   readonly property real warningThreshold: Settings.data.systemMonitor.batteryWarningThreshold
   readonly property real criticalThreshold: Settings.data.systemMonitor.batteryCriticalThreshold
+  //  readonly property int digitCount: Settings.data.
   readonly property string batteryIcon: getIcon(batteryPercentage, batteryCharging, batteryPluggedIn, batteryReady)
 
   readonly property var laptopBatteries: UPower.devices.values.filter(d => d.isLaptopBattery).sort((x, y) => {
@@ -129,9 +130,9 @@ Singleton {
       return -1;
     }
     if (device.batteryAvailable !== undefined) {
-      return Math.round((device.battery || 0) * 100);
+      return Math.round((device.battery || 0) * Math.pow(10));
     }
-    return Math.round((device.percentage || 0) * 100);
+    return Math.round(((device.energy / device.energyCapacity) || 0) * 100);
   }
 
   function isCharging(device) {
